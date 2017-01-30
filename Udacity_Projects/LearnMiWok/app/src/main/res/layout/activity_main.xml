@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.abhilashg.learnmiwok.MainActivity">
+
+    <TextView
+        android:id="@+id/number_text_view"
+        style="@style/text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F57C00"
+        android:padding="24dp"
+        android:text="@string/numbers" />
+
+    <TextView
+        android:id="@+id/familyNames_text_view"
+        style="@style/text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#388E3C"
+        android:padding="24dp"
+        android:text="@string/family_names" />
+
+    <TextView
+        android:id="@+id/colors_text_view"
+        style="@style/text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#512DA8"
+        android:padding="24dp"
+        android:text="@string/colors" />
+
+    <TextView
+        android:id="@+id/phrases_text_view"
+        style="@style/text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2196F3"
+        android:padding="24dp"
+        android:text="@string/phrases" />
+
+</LinearLayout>
