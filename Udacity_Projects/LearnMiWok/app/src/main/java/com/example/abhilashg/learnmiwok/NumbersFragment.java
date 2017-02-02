@@ -1,20 +1,32 @@
 package com.example.abhilashg.learnmiwok;
 
+
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class Numbers extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class NumbersFragment extends Fragment {
+
+
+    public NumbersFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_numbers);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_numbers, container, false);
 
         ArrayList<Word> words = new ArrayList<>();
-
         words.add(new Word("One" , "Lutti", R.drawable.number_one));
         words.add(new Word("Two" , "Otiiko", R.drawable.number_two));
         words.add(new Word("Three" , "Tolookosu",R.drawable.number_three));
@@ -27,11 +39,12 @@ public class Numbers extends AppCompatActivity {
         words.add(new Word("Ten" , "Na’aacha", R.drawable.number_ten));
 
 
-        WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.Numbers);
+        WordAdapter itemsAdapter = new WordAdapter(getActivity(), words, R.color.Numbers);
 
-        ListView listView = (ListView) findViewById(R.id.activity_numbers);
+        ListView listView = (ListView) rootView.findViewById(R.id.activity_numbers);
 
         listView.setAdapter(itemsAdapter);
-
+        return rootView;
     }
+
 }

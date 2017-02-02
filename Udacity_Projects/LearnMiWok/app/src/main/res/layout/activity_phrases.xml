@@ -4,6 +4,7 @@
     android:id="@+id/activity_phrases"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.abhilashg.learnmiwok.phrases">
+    tools:context="com.example.abhilashg.learnmiwok.phrases"
+    style="@style/category_style">
 
 </ListView>

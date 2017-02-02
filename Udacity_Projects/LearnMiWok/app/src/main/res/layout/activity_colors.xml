@@ -4,6 +4,7 @@
     android:id="@+id/activity_colors"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.abhilashg.learnmiwok.colors">
+    tools:context="com.example.abhilashg.learnmiwok.colors"
+    style="@style/category_style">
 
 </ListView>

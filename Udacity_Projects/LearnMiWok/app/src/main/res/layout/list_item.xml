@@ -24,12 +24,12 @@
             android:id="@+id/miwok_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="lutti" />
+            style="@style/category_style"/>
 
         <TextView
             android:id="@+id/default_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="One" />
+            style="@style/category_style"/>
     </LinearLayout>
 </LinearLayout>

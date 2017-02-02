@@ -1,18 +1,30 @@
 package com.example.abhilashg.learnmiwok;
 
+
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class phrases extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class PhrasesFragment extends Fragment {
+
+
+    public PhrasesFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phrases);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+       View rootView = inflater.inflate(R.layout.activity_phrases, container, false);
         ArrayList<Word> words = new ArrayList<>();
 
         words.add(new Word("Where are you going?", "minto wuksus"));
@@ -26,10 +38,12 @@ public class phrases extends AppCompatActivity {
         words.add(new Word("Let’s go.", "yoowutis"));
         words.add(new Word("Come here.", "әnni'nem"));
 
-        WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.Phrases);
+        WordAdapter itemsAdapter = new WordAdapter(getActivity(), words, R.color.Phrases);
 
-        ListView listView = (ListView) findViewById(R.id.activity_phrases);
+        ListView listView = (ListView) rootView.findViewById(R.id.activity_phrases);
 
         listView.setAdapter(itemsAdapter);
+        return rootView;
     }
+
 }

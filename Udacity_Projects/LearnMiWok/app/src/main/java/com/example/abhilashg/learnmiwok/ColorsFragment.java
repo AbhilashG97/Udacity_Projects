@@ -1,18 +1,30 @@
 package com.example.abhilashg.learnmiwok;
 
+
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class colors extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ColorsFragment extends Fragment {
+
+
+    public ColorsFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_colors);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_colors, container, false);
         ArrayList<Word> words = new ArrayList<>();
         words.add(new Word("red","weṭeṭṭi", R.drawable.color_red));
         words.add(new Word("green","weṭeṭṭi",R.drawable.color_green));
@@ -23,10 +35,12 @@ public class colors extends AppCompatActivity {
         words.add(new Word("dusty yellow","weṭeṭṭi",R.drawable.color_dusty_yellow));
         words.add(new Word("mustard yellow","weṭeṭṭi", R.drawable.color_mustard_yellow));
 
-        WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.Colors);
+        WordAdapter itemsAdapter = new WordAdapter(getActivity(), words, R.color.Colors);
 
-        ListView listView = (ListView) findViewById(R.id.activity_colors);
+        ListView listView = (ListView) rootView.findViewById(R.id.activity_colors);
 
         listView.setAdapter(itemsAdapter);
+        return rootView;
     }
+
 }
