@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Basic Calculator</string>
+    <string name="operand1">Operand 1</string>
+    <string name="operand2">Operand 2</string>
+    <string name="calculate">Calculate</string>
+
+    <string-array name="operator_array">
+        <item>+</item>
+        <item>-</item>
+        <item>*</item>
+        <item>/</item>
+        <item>%</item>
+        <item>^</item>
+    </string-array>
+</resources>
