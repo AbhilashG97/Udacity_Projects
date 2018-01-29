@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GitMelon</string>
+    <string name="enter_url">Enter URL</string>
+    <string name="url_example">URL Example</string>
+    <string name="clear">Clear</string>
+    <string name="search">Search</string>
+    <string name="exit">Exit</string>
+    <string name="about">About</string>
+</resources>
