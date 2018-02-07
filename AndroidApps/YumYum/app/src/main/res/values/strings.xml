@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">YumYum</string>]
+    <string name="fingerPrintMessage">Place your finger on the fingerprint sensor</string>
+    <string name="noSensorPresent">No fingerprint sensor detected</string>
+    <string name="permissionNotGiven">Permission to use fingerprint not provided</string>
+    <string name="noFingerprintEnrolled">No fingerprint enrolled</string>
+    <string name="deviceNotSecure">Device is not secure, add lock-screen protection</string>
+</resources>
