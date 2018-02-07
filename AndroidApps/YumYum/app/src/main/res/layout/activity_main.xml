@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/coordinatorLayout">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,20 +14,29 @@ android:background="#060613"
 android:orientation="vertical">
 
 
-<ImageView
-    android:id="@+id/iv_fingerPrint"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_gravity="center_horizontal"
-    android:layout_margin="56dp"
-    android:src="@drawable/ic_fingerprint" />
+<!--<ImageView-->
+    <!--android:id="@+id/iv_fingerPrint"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:layout_margin="56dp"-->
+    <!--android:src="@drawable/ic_fingerprint" />-->
+
+    <com.mattprecious.swirl.SwirlView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/swirl_fingerPrint"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="truepo"
+        app:swirl_state="on"
+        />
 
 <TextView
     android:id="@+id/tv_fingerprintText"
     android:layout_width="150dp"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/iv_fingerPrint"
+    android:layout_below="@+id/swirl_fingerPrint"
     android:layout_centerHorizontal="true"
     android:textAlignment="center"
     android:textColor="#ffffff"

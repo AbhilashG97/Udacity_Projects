@@ -5,4 +5,6 @@
     <string name="permissionNotGiven">Permission to use fingerprint not provided</string>
     <string name="noFingerprintEnrolled">No fingerprint enrolled</string>
     <string name="deviceNotSecure">Device is not secure, add lock-screen protection</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="success">Success !</string>
 </resources>
