@@ -1,5 +1,6 @@
 package github.abhilashg97com.gitmelon;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,15 +9,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.io.IOException;
 import java.net.URL;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import utilities.NetworkUtilities;
+
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_search)
     Button search;
+
+    @BindView(R.id.pb_fetch_github_data)
+    ProgressBar pbFetchingData;
+
+    @BindView(R.id.error_message)
+    TextView tvErrorMessage;
+
     private String queryResult;
 
     public String getQueryResult() {
@@ -48,19 +61,62 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    private class GitHubQueryTask extends AsyncTask<URL, Void, String>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pbFetchingData.setVisibility(VISIBLE);
+        }
+
+        @Override
+        protected String doInBackground(URL... urls) {
+            URL githubSearchURL = urls[0];
+            try{
+                setQueryResult(NetworkUtilities.getResponseFromHttpUrl(githubSearchURL));
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return getQueryResult();
+        }
+
+        @Override
+        protected void onPostExecute(String string) {
+            pbFetchingData.setVisibility(INVISIBLE);
+            if(string != null && !string.equals("")){
+                displayQueryResult();
+            }else{
+                tvErrorMessage.setVisibility(VISIBLE);
+                urlResult.setVisibility(INVISIBLE);
+            }
+        }
+    }
+
     @OnClick(R.id.btn_search)
     public void makeGitHubQuery() {
-        URL url = NetworkUtilities.buildUrl(searchQuery.getText().toString());
-        try {
-            setQueryResult(NetworkUtilities.getResponseFromHttpUrl(url));
-            displayQueryResult();
-        } catch (Exception ioe) {
-            ioe.printStackTrace();
+        if(Pattern.matches("\\s*", searchQuery.getText().toString())){
+            Toast.makeText(this, R.string.field_empty, Toast.LENGTH_SHORT).show();
+        }else {
+            urlResult.setText("");
+            URL url = NetworkUtilities.buildUrl(searchQuery.getText().toString());
+            try {
+                new GitHubQueryTask().execute(url);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    @OnClick(R.id.btn_clear)
+    public void clearSearchField(){
+        searchQuery.setText("");
+        urlResult.setText("");
     }
 
     public void displayQueryResult() {
         Log.v("Get http request", getQueryResult());
+        tvErrorMessage.setVisibility(INVISIBLE);
+        urlResult.setVisibility(VISIBLE);
         urlResult.setText(getQueryResult());
     }
 

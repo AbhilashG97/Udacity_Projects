@@ -9,76 +9,106 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:foregroundGravity="center">
 
         <EditText
             android:id="@+id/et_url"
-            android:maxLines="4"
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:layout_margin="10dp"
             android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:hint="@string/enter_url"
-            android:inputType="text" />
+            android:inputType="text"
+            android:maxLines="4" />
 
     </android.support.v7.widget.CardView>
 
 
-    <android.support.v7.widget.CardView
-        android:padding="25dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+    <!--<android.support.v7.widget.CardView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="200dp"-->
+    <!--android:layout_marginLeft="8dp"-->
+    <!--android:layout_marginRight="8dp"-->
+    <!--android:layout_marginTop="16dp"-->
+    <!--android:padding="25dp">-->
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp">
+        android:layout_height="208dp"
+        android:layout_margin="8dp">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbarSize="16dp"
+            android:scrollbars="vertical">
 
             <TextView
-                android:layout_margin="10dp"
                 android:id="@+id/tv_url_result"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:maxLines="10"
                 android:layout_gravity="center"
-                tools:text="@string/url_example" />
+                android:layout_margin="10dp"
+                android:padding="16sp"
+                tools:text="@string/http_response" />
+
         </ScrollView>
 
-    </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/error_message"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="#ff3333"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:text="@string/error_message"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+
+    <!--</android.support.v7.widget.CardView>-->
 
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
-
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search"
-            android:layout_gravity="center"
-            android:layout_weight="1"/>
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/clear"
-            android:layout_weight="1"
             android:layout_gravity="center"
-            android:textColor="#ff3333"/>
+            android:layout_weight="1"
+            android:text="@string/clear"
+            android:textColor="#ff3333" />
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/search" />
 
     </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/pb_fetch_github_data"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
 
 </LinearLayout>
