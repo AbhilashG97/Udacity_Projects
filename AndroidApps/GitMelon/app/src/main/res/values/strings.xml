@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">GitMelon</string>
-    <string name="enter_url">Enter URL</string>
+    <string name="enter_username">Enter GitHub username</string>
     <string name="http_response">Response after sending Http request</string>
     <string name="field_empty">Please enter a query !</string>
     <string name="clear">Clear</string>
@@ -8,4 +8,6 @@
     <string name="exit">Exit</string>
     <string name="about">About</string>
     <string name="error_message">Failed to fetch data ! Try Again later.</string>
+    <string name="sample_list_item">Sample Repository Name</string>
+    <string name="error_no_such_user_exists">The entered username may be incorrect, or no such user exists : ( </string>
 </resources>
