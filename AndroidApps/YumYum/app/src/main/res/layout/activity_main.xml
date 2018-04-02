@@ -24,13 +24,14 @@ android:orientation="vertical">
     <!--android:src="@drawable/ic_fingerprint" />-->
 
     <com.mattprecious.swirl.SwirlView
+        android:id="@+id/swirl_fingerPrint"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:id="@+id/swirl_fingerPrint"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="truepo"
-        app:swirl_state="on"
-        />
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:visibility="visible"
+        app:swirl_state="on" />
 
 <TextView
     android:id="@+id/tv_fingerprintText"
