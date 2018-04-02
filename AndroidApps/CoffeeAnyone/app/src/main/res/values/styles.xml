@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#795548</item>
+        <item name="colorPrimaryDark">#5D4037</item>
+        <item name="colorAccent">#6D4C41</item>
+    </style>
+    <style name="buttonStyle">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+</resources>
