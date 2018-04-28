@@ -1,4 +1,4 @@
-package github.abhilashg97com.gitmelon;
+package github.abhilashg97com.gitmelon.objects;
 
 import com.google.gson.annotations.SerializedName;
 

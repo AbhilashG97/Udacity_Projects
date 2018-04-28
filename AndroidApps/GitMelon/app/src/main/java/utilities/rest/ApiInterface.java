@@ -1,10 +1,8 @@
 package utilities.rest;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import github.abhilashg97com.gitmelon.Repository;
-import github.abhilashg97com.gitmelon.RepositoryResponse;
+import github.abhilashg97com.gitmelon.objects.Repository;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

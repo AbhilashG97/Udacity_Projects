@@ -17,11 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import github.abhilashg97com.gitmelon.objects.Repository;
+import github.abhilashg97com.gitmelon.repositoryrecyclerview.RepositoryItemListAdapter;
+import github.abhilashg97com.gitmelon.repositoryrecyclerview.RepositoryItemPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,7 +35,7 @@ import utilities.rest.ApiInterface;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RepositoriesListMvpView {
 
     @BindView(R.id.et_url)
     EditText searchQuery;
@@ -51,11 +55,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.error_message)
     TextView tvErrorMessage;
 
-    private ArrayList<Repository> repositories;
     private RepositoryItemListAdapter repositoryAdapter;
     private Context context;
     private ApiInterface apiService;
     private String enteredUsername;
+    private RepositoryItemPresenter repositoryItemPresenter;
+
 
     public String getEnteredUsername() {
         return enteredUsername;
@@ -119,6 +124,35 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void showMessage(int id) {
+        Toast.makeText(context, getString(id), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void showRepositories(List<Repository> repositories) {
+
+    }
+
+    @Override
+    public String getSearchQuery() {
+        return enteredUsername;
+    }
+
+    @Override
+    public void showProgressBar(boolean show) {
+        if (show) {
+            pbFetchingData.setVisibility(VISIBLE);
+        } else {
+            pbFetchingData.setVisibility(INVISIBLE);
+        }
+    }
+
     private class GitHubQueryTask extends AsyncTask<ApiInterface, Void, String> {
 
         @Override
@@ -137,18 +171,17 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call<ArrayList<Repository>> call, Response<ArrayList<Repository>> response) {
                     Log.v("Formed URL Retrofit -> ", call.request().url().toString());
 
-                        if(response.body() != null) {
-                            repositories = response.body();
-                            rvRepositoryNames.setHasFixedSize(true);
-                            rvRepositoryNames.setLayoutManager(new LinearLayoutManager(context));
-                            Log.v("Repository list -> ", repositories.toString());
-                            repositoryAdapter = new RepositoryItemListAdapter(repositories, context);
-                            rvRepositoryNames.setAdapter(repositoryAdapter);
-                            Log.v("Repositories ->", repositories.toString());
-                        }else {
-                            Toast.makeText(context, R.string.error_no_such_user_exists, Toast.LENGTH_SHORT).show();
-                        }
-
+                    if (response.body() != null) {
+                        repositoryItemPresenter = new RepositoryItemPresenter(response.body());
+                        rvRepositoryNames.setHasFixedSize(true);
+                        rvRepositoryNames.setLayoutManager(new LinearLayoutManager(context));
+                        Log.v("Repository list -> ", repositoryItemPresenter.getRepositories().toString());
+                        repositoryAdapter = new RepositoryItemListAdapter(repositoryItemPresenter, context);
+                        rvRepositoryNames.setAdapter(repositoryAdapter);
+                        Log.v("Repositories ->", repositoryItemPresenter.getRepositories().toString());
+                    } else {
+                        showMessage(R.string.error_no_such_user_exists);
+                    }
                 }
 
                 @Override
