@@ -6,4 +6,6 @@ public class Constant {
     public static final String MODEL = "model";
     public static final String MAXIMUM_PRICE="maximum_price";
     public static final String MINIMUM_PRICE="minimum_price";
+    public static final String USERNAME="username";
+    public static final String QUANTITY="quantity";
 }

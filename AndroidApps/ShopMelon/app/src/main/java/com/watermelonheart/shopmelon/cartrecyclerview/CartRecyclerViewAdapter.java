@@ -1,4 +1,4 @@
-package com.watermelonheart.shopmelon.recyclerview;
+package com.watermelonheart.shopmelon.cartrecyclerview;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -23,6 +23,7 @@ public class CartRecyclerViewAdapter extends Adapter<CartRecyclerViewAdapter.Car
 
     private ArrayList<Phone> phoneList;
     private Context context;
+    private ClickListener clickListener;
 
     public CartRecyclerViewAdapter(ArrayList<Phone> phoneList, Context context) {
         this.phoneList = phoneList;
@@ -52,7 +53,7 @@ public class CartRecyclerViewAdapter extends Adapter<CartRecyclerViewAdapter.Car
     }
 
 
-    public class CartViewHolder extends RecyclerView.ViewHolder {
+    public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
         @BindView(R.id.tv_manufacturer)
         TextView manufacturer;
@@ -68,7 +69,24 @@ public class CartRecyclerViewAdapter extends Adapter<CartRecyclerViewAdapter.Car
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
             ButterKnife.bind(this, itemView);
         }
+
+        @Override
+        public void onClick(View view) {
+            clickListener.onItemClick(getAdapterPosition(), view);
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            clickListener.onItemLongClick(getAdapterPosition(), view);
+            return false;
+        }
+    }
+
+    public void setOnItemClickListener(ClickListener clickListener) {
+        this.clickListener = clickListener;
     }
 }

@@ -18,11 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".searchproduct.SearchActivity"
-            android:parentActivityName=".homescreen.MainActivity">
-
-        </activity>
+        <activity
+            android:name=".searchproduct.SearchActivity"
+            android:parentActivityName=".homescreen.MainActivity"></activity>
+        <activity android:name=".SalesActivity"></activity>
     </application>
 
 </manifest>
