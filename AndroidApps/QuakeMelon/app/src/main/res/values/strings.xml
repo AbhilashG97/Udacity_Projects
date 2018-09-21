@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">QuakeMelon</string>
+    <string name="start_time">Start time</string>
+    <string name="end_time">End Time</string>
+    <string name="search">Search</string>
+    <string name="min_magnitude">Minimum Magnitude</string>
+</resources>
