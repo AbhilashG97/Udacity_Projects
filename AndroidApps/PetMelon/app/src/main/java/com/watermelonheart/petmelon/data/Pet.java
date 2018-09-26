@@ -61,4 +61,9 @@ public class Pet {
     public void setWeight(int weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return get_id()+" "+getName()+" "+getBreed()+" "+getGender()+" "+getWeight()+"\n\n";
+    }
 }

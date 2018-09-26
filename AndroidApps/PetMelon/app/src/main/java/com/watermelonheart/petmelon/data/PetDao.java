@@ -19,6 +19,12 @@ public interface PetDao {
     @Query("SELECT COUNT(_id) FROM Pet")
     int getTotalPets();
 
+    @Query("DELETE FROM Pet WHERE _id = (:petId)")
+    void deletePetById(int petId);
+
+    @Query("DELETE FROM Pet")
+    void removeAllPets();
+
     @Insert
     void insertPet(Pet pet);
 
