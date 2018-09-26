@@ -1,30 +1,57 @@
 package com.watermelonheart.petmelon;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
+
+import com.watermelonheart.petmelon.data.PetDatabase;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.tv_log)
+    TextView logView;
+
+    private PetDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        onFabPressed();
+        initializePetDatabase();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+    }
+
+    public void initializePetDatabase() {
+        database = PetDatabase.getInstance(this);
+        new DatabaseAsyncTask().execute();
+    }
+
+    public void showLogs(int numberOfPets) {
+        logView.setText("Total number of pets are "+numberOfPets);
+    }
+
+    private void onFabPressed() {
+        fab.setOnClickListener((view) -> {
+            Intent intent = new Intent(this, AddPet.class);
+            startActivity(intent);
         });
     }
 
@@ -43,10 +70,23 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_insert_dummy_data:
+                //insert dummy data
+                return true;
+            case R.id.action_delete_all_pets:
+                // delete all pets
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    private class DatabaseAsyncTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            showLogs(database.getPetDao().getTotalPets());
+            return null;
+        }
     }
 }
