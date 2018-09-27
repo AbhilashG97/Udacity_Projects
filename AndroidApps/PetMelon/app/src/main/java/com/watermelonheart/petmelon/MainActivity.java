@@ -2,7 +2,9 @@ package com.watermelonheart.petmelon;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -45,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
+    protected void onResume() {
+        super.onResume();
         getPetData();
     }
 
@@ -69,10 +71,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(data != null) {
+                if (data.getStringExtra("SHOW_TOAST").equals("1")) {
+                    Snackbar.make(this.findViewById(android.R.id.content),
+                            "Pet added to DB", Snackbar.LENGTH_SHORT)
+                            .show();
+                }
+            }
+        }
+    }
+
     private void onFabPressed() {
         fab.setOnClickListener((view) -> {
             Intent intent = new Intent(this, AddPet.class);
-            startActivity(intent);
+            startActivityForResult(intent, 1);
         });
     }
 

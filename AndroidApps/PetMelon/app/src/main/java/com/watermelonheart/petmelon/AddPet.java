@@ -1,6 +1,7 @@
 package com.watermelonheart.petmelon;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -123,6 +124,7 @@ public class AddPet extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            setResult(2, new Intent().putExtra("SHOW_TOAST","1"));
             AddPet.this.finish();
         }
     }
