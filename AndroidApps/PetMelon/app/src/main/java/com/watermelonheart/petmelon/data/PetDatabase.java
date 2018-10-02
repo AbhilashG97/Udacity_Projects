@@ -5,14 +5,14 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-@Database(entities = {Pet.class}, version = 1)
+@Database(entities = {Pet.class}, version = 1, exportSchema = false)
 public abstract class PetDatabase extends RoomDatabase {
 
     private static PetDatabase INSTANCE;
 
     public abstract PetDao getPetDao();
 
-    public static PetDatabase getInstance(Context context) {
+    public static synchronized PetDatabase getInstance(Context context) {
         if(INSTANCE == null) {
             INSTANCE = PetDatabase.buildDatabase(context);
         }
@@ -20,7 +20,7 @@ public abstract class PetDatabase extends RoomDatabase {
     }
 
     private static PetDatabase buildDatabase(final Context context) {
-        return Room.databaseBuilder(context, PetDatabase.class,
-                "pet-db").build();
+        return Room.databaseBuilder(context.getApplicationContext(), PetDatabase.class,
+                Pet.TABLE_NAME).build();
     }
 }
