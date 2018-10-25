@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuakeMelon</string>
+    <string name="start_time">Hora de Início</string>
+    <string name="end_time">Hora de Término</string>
+    <string name="search">Pesquisar</string>
+    <string name="min_magnitude">Magntude Mínima</string>
+</resources>
