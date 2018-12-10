@@ -2,6 +2,8 @@
 
 This is simple application built with [Agera](https://github.com/google/agera).
 
+:warning: This app is not complete due to [this](https://github.com/google/agera/issues/171) issue.
+
 ## Theory 
 
 ### Basics 
